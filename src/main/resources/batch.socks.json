@@ -1,0 +1,50 @@
+[
+  {
+    "socks": {
+      "color": "YELLOW",
+      "size": "SIZE_33",
+      "cottonPart": 70
+    },
+    "quantity": 14
+  },
+  {
+    "socks": {
+      "color": "BLACK",
+      "size": "SIZE_31",
+      "cottonPart": 80
+    },
+    "quantity": 15
+  },
+  {
+    "socks": {
+      "color": "WHITE",
+      "size": "SIZE_27",
+      "cottonPart": 100
+    },
+    "quantity": 9
+  },
+  {
+    "socks": {
+      "color": "WHITE",
+      "size": "SIZE_25",
+      "cottonPart": 100
+    },
+    "quantity": 27
+  },
+  {
+    "socks": {
+      "color": "BLACK",
+      "size": "SIZE_25",
+      "cottonPart": 80
+    },
+    "quantity": 8
+  },
+  {
+    "socks": {
+      "color": "PURPLE",
+      "size": "SIZE_23",
+      "cottonPart": 50
+    },
+    "quantity": 7
+  }
+]
