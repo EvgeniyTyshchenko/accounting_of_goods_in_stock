@@ -11,7 +11,7 @@ public interface TransactionsService {
 
     void addTransactions(Type type, BatchSocks batchSocks);
 
-    void readFromFile() throws FileProcessingException;
+    void readFromFile();
 
     Path createReport() throws IOException, FileProcessingException;
 }

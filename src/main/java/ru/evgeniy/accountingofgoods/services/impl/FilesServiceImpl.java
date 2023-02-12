@@ -49,7 +49,7 @@ public class FilesServiceImpl implements FilesService {
         try {
             return Files.readString(Path.of(dataFilePath, batchSocksFileName));
         } catch (IOException e) {
-            throw new FileProcessingException();
+            throw new RuntimeException("Ошибка в чтении файла batch socks!");
         }
     }
 
@@ -58,7 +58,7 @@ public class FilesServiceImpl implements FilesService {
         try {
             return Files.readString(Path.of(dataFilePath, transactionsFileName));
         } catch (IOException e) {
-            throw new FileProcessingException();
+            throw new RuntimeException("Ошибка в чтении файла transactions!");
         }
     }
 
@@ -82,13 +82,13 @@ public class FilesServiceImpl implements FilesService {
     }
 
     @Override
-    public boolean uploadBatchSocksFile(MultipartFile file) {
+    public boolean uploadBatchSocksFile(MultipartFile file) throws FileProcessingException {
         File dataFile = getBatchSocksDataFile();
         return copyFiles(dataFile, file);
     }
 
     @Override
-    public boolean uploadTransactionsFile(MultipartFile file) {
+    public boolean uploadTransactionsFile(MultipartFile file) throws FileProcessingException {
         File dataFile = getTransactionsDataFile();
         return copyFiles(dataFile, file);
     }
@@ -100,7 +100,7 @@ public class FilesServiceImpl implements FilesService {
             Files.createFile(Path.of(dataFilePath, batchSocksFileName));
         } catch (IOException e) {
             e.printStackTrace();
-            throw new FileProcessingException("Ошибка очистки файла!");
+            throw new RuntimeException("Ошибка очистки файла!");
         }
     }
 

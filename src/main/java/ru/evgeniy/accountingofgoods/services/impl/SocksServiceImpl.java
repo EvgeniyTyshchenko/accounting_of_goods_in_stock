@@ -4,10 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
-import ru.evgeniy.accountingofgoods.exceptions.DataEntryException;
-import ru.evgeniy.accountingofgoods.exceptions.ExceptionWebApp;
 import ru.evgeniy.accountingofgoods.exceptions.FileProcessingException;
-import ru.evgeniy.accountingofgoods.exceptions.RangeOfValuesException;
+import ru.evgeniy.accountingofgoods.exceptions.ProductMissingException;
 import ru.evgeniy.accountingofgoods.model.BatchSocks;
 import ru.evgeniy.accountingofgoods.model.Socks;
 import ru.evgeniy.accountingofgoods.model.enums.Color;
@@ -16,7 +14,6 @@ import ru.evgeniy.accountingofgoods.model.enums.Type;
 import ru.evgeniy.accountingofgoods.services.FilesService;
 import ru.evgeniy.accountingofgoods.services.SocksService;
 import ru.evgeniy.accountingofgoods.services.TransactionsService;
-import ru.evgeniy.accountingofgoods.utility.ValidateUtil;
 
 import javax.annotation.PostConstruct;
 import java.util.*;
@@ -45,8 +42,7 @@ public class SocksServiceImpl implements SocksService {
     }
 
     @Override
-    public String addSocks(BatchSocks batchSocks) throws RangeOfValuesException, DataEntryException {
-        ValidateUtil.validateSocksParameters(batchSocks);
+    public String addSocks(BatchSocks batchSocks) {
         Socks socks = batchSocks.getSocks();
         int quantity = batchSocks.getQuantity();
         sockWarehouse.put(socks, sockWarehouse.getOrDefault(socks, 0) + quantity);
@@ -57,8 +53,7 @@ public class SocksServiceImpl implements SocksService {
     }
 
     @Override
-    public int deleteSocks(BatchSocks batchSocks) throws RangeOfValuesException, DataEntryException, ExceptionWebApp {
-        ValidateUtil.validateSocksParameters(batchSocks);
+    public int deleteSocks(BatchSocks batchSocks) throws ProductMissingException {
         Socks socks = batchSocks.getSocks();
         int quantity = batchSocks.getQuantity();
         if (availabilityOfSocks(batchSocks)) {
@@ -67,13 +62,12 @@ public class SocksServiceImpl implements SocksService {
             saveToFile();
             return sockWarehouse.get(socks);
         } else {
-            throw new ExceptionWebApp("Недостаточно товара на складе!");
+            throw new ProductMissingException("Недостаточно товара на складе!");
         }
     }
 
     @Override
-    public int writingOffSocks(BatchSocks batchSocks) throws RangeOfValuesException, DataEntryException, ExceptionWebApp {
-        ValidateUtil.validateSocksParameters(batchSocks);
+    public int writingOffSocks(BatchSocks batchSocks) throws ProductMissingException {
         if (availabilityOfSocks(batchSocks)) {
             sockWarehouse.put(batchSocks.getSocks(),
                     sockWarehouse.get(batchSocks.getSocks()) - batchSocks.getQuantity());
@@ -82,16 +76,16 @@ public class SocksServiceImpl implements SocksService {
             saveToFile();
             return sockWarehouse.get(batchSocks.getSocks());
         } else {
-            throw new ExceptionWebApp("Количество товара для списания не должно быть больше,чем имеется на складе!");
+            throw new ProductMissingException("Количество товара для списания не должно быть больше,чем имеется на складе!");
         }
     }
 
     @Override
-    public Map<Socks, Integer> getListOfDecommissionedGoods() throws ExceptionWebApp {
+    public Map<Socks, Integer> getListOfDecommissionedGoods() throws ProductMissingException{
         if (!decommissionedGoods.isEmpty()) {
             return decommissionedGoods;
         } else {
-            throw new ExceptionWebApp("Списанного товара нет!");
+            throw new ProductMissingException("Списанного товара нет!");
         }
     }
 

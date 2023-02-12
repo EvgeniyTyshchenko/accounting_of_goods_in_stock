@@ -29,7 +29,6 @@ private final FilesService filesService;
 
 private List<Transactions> transactions = new ArrayList<>();
 
-
     public TransactionsServiceImpl(FilesService filesService) {
         this.filesService = filesService;
     }
@@ -61,7 +60,7 @@ private List<Transactions> transactions = new ArrayList<>();
     }
 
     @Override
-    public void readFromFile() throws FileProcessingException {
+    public void readFromFile() {
         String json = filesService.readTransactionsFromFile();
         try {
             ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());

@@ -4,7 +4,6 @@ import org.springframework.web.multipart.MultipartFile;
 import ru.evgeniy.accountingofgoods.exceptions.FileProcessingException;
 
 import java.io.File;
-import java.io.IOException;
 import java.nio.file.Path;
 
 public interface FilesService {
@@ -13,19 +12,19 @@ public interface FilesService {
 
     boolean saveTransactionsToFile(String json);
 
-    String readBatchSocksFromFile() throws FileProcessingException;
+    String readBatchSocksFromFile();
 
-    String readTransactionsFromFile() throws FileProcessingException;
+    String readTransactionsFromFile();
 
     File getBatchSocksDataFile();
 
-    Path createTempFile(String suffix) throws FileProcessingException;
+    Path createTempFile(String suffix);
 
     File getTransactionsDataFile();
 
-    boolean uploadBatchSocksFile(MultipartFile file) throws IOException;
+    boolean uploadBatchSocksFile(MultipartFile file) throws FileProcessingException;
 
-    boolean uploadTransactionsFile(MultipartFile file);
+    boolean uploadTransactionsFile(MultipartFile file) throws FileProcessingException;
 
     void cleanDataFile();
 }

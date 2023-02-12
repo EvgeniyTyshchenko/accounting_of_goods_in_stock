@@ -12,9 +12,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.evgeniy.accountingofgoods.exceptions.DataEntryException;
-import ru.evgeniy.accountingofgoods.exceptions.ExceptionWebApp;
-import ru.evgeniy.accountingofgoods.exceptions.RangeOfValuesException;
+import ru.evgeniy.accountingofgoods.exceptions.ProductMissingException;
 import ru.evgeniy.accountingofgoods.model.BatchSocks;
 import ru.evgeniy.accountingofgoods.model.Socks;
 import ru.evgeniy.accountingofgoods.model.enums.Color;
@@ -51,8 +49,7 @@ public class SocksController {
     )
     })
     @PostMapping(path = "/add", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> addSocks(@Valid @RequestBody BatchSocks batchSocks)
-            throws RangeOfValuesException, DataEntryException {
+    public ResponseEntity<String> addSocks(@Valid @RequestBody BatchSocks batchSocks) {
         return ResponseEntity.ok(socksService.addSocks(batchSocks));
     }
 
@@ -71,8 +68,7 @@ public class SocksController {
     )
     })
     @PutMapping(path = "/shipment", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> shipmentSocks(@Valid @RequestBody BatchSocks batchSocks)
-            throws RangeOfValuesException, DataEntryException, ExceptionWebApp {
+    public ResponseEntity<String> shipmentSocks(@Valid @RequestBody BatchSocks batchSocks) throws ProductMissingException {
 
             socksService.deleteSocks(batchSocks);
             return ResponseEntity.ok("Отгрузка произведена! \n" +
@@ -94,8 +90,7 @@ public class SocksController {
     )
     })
     @DeleteMapping(path = "/writeOffGoods", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> writingOffSocks(@Valid @RequestBody BatchSocks batchSocks)
-            throws RangeOfValuesException, ExceptionWebApp, DataEntryException {
+    public ResponseEntity<String> writingOffSocks(@Valid @RequestBody BatchSocks batchSocks) throws ProductMissingException{
 
             socksService.writingOffSocks(batchSocks);
             return ResponseEntity.ok("Списание товара выполнено успешно!\n" +
@@ -121,7 +116,7 @@ public class SocksController {
             )
     })
     @GetMapping(path = "/getListOfDecommissionedGoods", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Map<Socks, Integer>> getListOfDecommissionedGoods() throws ExceptionWebApp {
+    public ResponseEntity<Map<Socks, Integer>> getListOfDecommissionedGoods() throws ProductMissingException {
         Map<Socks, Integer> decommissionedGoods = socksService.getListOfDecommissionedGoods();
         return ResponseEntity.ok(decommissionedGoods);
     }
@@ -179,6 +174,7 @@ public class SocksController {
     public ResponseEntity<Map<Socks, Integer>> getAllInformation() {
         return ResponseEntity.ok(socksService.getAllTheInformationAboutTheGoodsInStock());
     }
+
     @Operation(summary = "Очистить склад",
             description = "Входные данные не нужны!<br>" +
                     "ВНИМАНИЕ! При использовании данного функционала, вся информация о товарах, числящихся на складе, будет удалена!")

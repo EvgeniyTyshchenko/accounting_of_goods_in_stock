@@ -71,7 +71,7 @@ public class FilesController {
     )
     })
     @PostMapping(value = "/import/batchSocks", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<Void> uploadBatchSocksFile(@RequestParam MultipartFile file) throws IOException {
+    public ResponseEntity<Void> uploadBatchSocksFile(@RequestParam MultipartFile file) throws FileProcessingException {
         filesService.cleanDataFile();
         if (filesService.uploadBatchSocksFile(file)) {
             socksService.readFromFile();
@@ -116,7 +116,7 @@ public class FilesController {
     )
     })
     @PostMapping(value = "/import/transactions", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<Void> uploadTransactionsFile(@RequestParam MultipartFile file) {
+    public ResponseEntity<Void> uploadTransactionsFile(@RequestParam MultipartFile file) throws FileProcessingException {
         filesService.cleanDataFile();
         if (filesService.uploadTransactionsFile(file)) {
             transactionsService.readFromFile();
