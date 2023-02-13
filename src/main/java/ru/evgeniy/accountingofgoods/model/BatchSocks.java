@@ -4,7 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
 @Data
@@ -12,6 +14,8 @@ import javax.validation.constraints.Positive;
 @NoArgsConstructor
 public class BatchSocks {
 
+    @Valid
+    @NotNull
     private Socks socks;
     @Positive(message = "The quantity must be a positive number")
     @Min(value = 1, message = "The batch of socks should not be less than 1")
