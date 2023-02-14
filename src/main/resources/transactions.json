@@ -1,0 +1,145 @@
+[
+  {
+    "type": "ACCEPTANCE",
+    "date": "11-02-2023",
+    "time": "00:56:12",
+    "batchSocks": {
+      "socks": {
+        "color": "BLACK",
+        "size": "SIZE_25",
+        "cottonPart": 80
+      },
+      "quantity": 13
+    }
+  },
+  {
+    "type": "ACCEPTANCE",
+    "date": "11-02-2023",
+    "time": "00:56:31",
+    "batchSocks": {
+      "socks": {
+        "color": "BLACK",
+        "size": "SIZE_31",
+        "cottonPart": 80
+      },
+      "quantity": 15
+    }
+  },
+  {
+    "type": "ACCEPTANCE",
+    "date": "11-02-2023",
+    "time": "00:57:01",
+    "batchSocks": {
+      "socks": {
+        "color": "WHITE",
+        "size": "SIZE_25",
+        "cottonPart": 100
+      },
+      "quantity": 27
+    }
+  },
+  {
+    "type": "ACCEPTANCE",
+    "date": "11-02-2023",
+    "time": "00:57:13",
+    "batchSocks": {
+      "socks": {
+        "color": "WHITE",
+        "size": "SIZE_27",
+        "cottonPart": 100
+      },
+      "quantity": 30
+    }
+  },
+  {
+    "type": "ACCEPTANCE",
+    "date": "11-02-2023",
+    "time": "00:57:51",
+    "batchSocks": {
+      "socks": {
+        "color": "PURPLE",
+        "size": "SIZE_23",
+        "cottonPart": 50
+      },
+      "quantity": 15
+    }
+  },
+  {
+    "type": "ACCEPTANCE",
+    "date": "11-02-2023",
+    "time": "00:58:19",
+    "batchSocks": {
+      "socks": {
+        "color": "YELLOW",
+        "size": "SIZE_33",
+        "cottonPart": 70
+      },
+      "quantity": 17
+    }
+  },
+  {
+    "type": "SHIPMENT",
+    "date": "11-02-2023",
+    "time": "00:59:10",
+    "batchSocks": {
+      "socks": {
+        "color": "PURPLE",
+        "size": "SIZE_23",
+        "cottonPart": 50
+      },
+      "quantity": 7
+    }
+  },
+  {
+    "type": "SHIPMENT",
+    "date": "11-02-2023",
+    "time": "00:59:57",
+    "batchSocks": {
+      "socks": {
+        "color": "BLACK",
+        "size": "SIZE_25",
+        "cottonPart": 80
+      },
+      "quantity": 5
+    }
+  },
+  {
+    "type": "SHIPMENT",
+    "date": "11-02-2023",
+    "time": "01:00:35",
+    "batchSocks": {
+      "socks": {
+        "color": "WHITE",
+        "size": "SIZE_27",
+        "cottonPart": 100
+      },
+      "quantity": 21
+    }
+  },
+  {
+    "type": "WRITE_OFF",
+    "date": "11-02-2023",
+    "time": "01:01:24",
+    "batchSocks": {
+      "socks": {
+        "color": "YELLOW",
+        "size": "SIZE_33",
+        "cottonPart": 70
+      },
+      "quantity": 3
+    }
+  },
+  {
+    "type": "WRITE_OFF",
+    "date": "11-02-2023",
+    "time": "01:02:11",
+    "batchSocks": {
+      "socks": {
+        "color": "PURPLE",
+        "size": "SIZE_23",
+        "cottonPart": 50
+      },
+      "quantity": 1
+    }
+  }
+]
